@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Investor_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Investor Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Buy-and-Hold Investor</fullName>
+                <default>false</default>
+                <label>Buy-and-Hold Investor</label>
+            </value>
+            <value>
+                <fullName>Fix-and-Flip Investor</fullName>
+                <default>false</default>
+                <label>Fix-and-Flip Investor</label>
+            </value>
+            <value>
+                <fullName>BRRRR Investor (Buy, Rehab, Rent, Refinance, Repeat)</fullName>
+                <default>false</default>
+                <label>BRRRR Investor (Buy, Rehab, Rent, Refinance, Repeat)</label>
+            </value>
+            <value>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+                <label>Wholesaler</label>
+            </value>
+            <value>
+                <fullName>Real Estate Developer</fullName>
+                <default>false</default>
+                <label>Real Estate Developer</label>
+            </value>
+            <value>
+                <fullName>Commercial Property Investor</fullName>
+                <default>false</default>
+                <label>Commercial Property Investor</label>
+            </value>
+            <value>
+                <fullName>Residential Property Investor</fullName>
+                <default>false</default>
+                <label>Residential Property Investor</label>
+            </value>
+            <value>
+                <fullName>Multi-family Property Investor</fullName>
+                <default>false</default>
+                <label>Multi-family Property Investor</label>
+            </value>
+            <value>
+                <fullName>Vacation Rental Investor</fullName>
+                <default>false</default>
+                <label>Vacation Rental Investor</label>
+            </value>
+            <value>
+                <fullName>Short-term Rental Investor (e.g., Airbnb)</fullName>
+                <default>false</default>
+                <label>Short-term Rental Investor (e.g., Airbnb)</label>
+            </value>
+            <value>
+                <fullName>Real Estate Investment Trust (REIT) Investor</fullName>
+                <default>false</default>
+                <label>Real Estate Investment Trust (REIT) Investor</label>
+            </value>
+            <value>
+                <fullName>Turnkey Property Investor</fullName>
+                <default>false</default>
+                <label>Turnkey Property Investor</label>
+            </value>
+            <value>
+                <fullName>Value-Add Investor</fullName>
+                <default>false</default>
+                <label>Value-Add Investor</label>
+            </value>
+            <value>
+                <fullName>Distressed Property Investor</fullName>
+                <default>false</default>
+                <label>Distressed Property Investor</label>
+            </value>
+            <value>
+                <fullName>Land Developer</fullName>
+                <default>false</default>
+                <label>Land Developer</label>
+            </value>
+            <value>
+                <fullName>House Hacker (Owner-occupant investor)</fullName>
+                <default>false</default>
+                <label>House Hacker (Owner-occupant investor)</label>
+            </value>
+            <value>
+                <fullName>Passive Real Estate Investor</fullName>
+                <default>false</default>
+                <label>Passive Real Estate Investor</label>
+            </value>
+            <value>
+                <fullName>Syndication Investor</fullName>
+                <default>false</default>
+                <label>Syndication Investor</label>
+            </value>
+            <value>
+                <fullName>Note Investor</fullName>
+                <default>false</default>
+                <label>Note Investor</label>
+            </value>
+            <value>
+                <fullName>Tax Lien Investor</fullName>
+                <default>false</default>
+                <label>Tax Lien Investor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

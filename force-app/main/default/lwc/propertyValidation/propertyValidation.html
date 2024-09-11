@@ -1,0 +1,606 @@
+<template>
+    <template if:true={propertyLookupResponse.results}>
+        <lightning-tabset class="slds-p-top_large">
+            <lightning-tab label="Property Search List">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Property Owner">Property Owner</div>
+                            </th>
+                            <!-- <th scope="col">
+                                    <div class="slds-truncate" title="Address">Address</div>
+                                </th> -->
+                            <th scope="col">
+                                <div class="slds-truncate" title="Deed History">Deed History
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Mortgage History">Mortgage
+                                    History
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Property Info">Property Info</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title=""></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={propertyLookupResponse.results.properties} for:item="property">
+                            <tr key={property._id} class="slds-hint-parent">
+                                <td data-label="Property Owner">
+                                    <template for:each={property.owner.names} for:item="ownerName">
+                                        <div key={ownerName.full}>
+                                            <p class="value">{ownerName.full}</p>
+                                        </div>
+                                    </template>
+                                </td>
+                                <!-- <td data-label="Address">
+                                        <p class="value">{property.address.street}, {property.address.city}</p>
+                                        <p>{property.address.state}, {property.address.county}, {property.address.zip}
+                                        </p>
+                                    </td> -->
+                                <td data-label="Deed History">
+                                    <button class="slds-button slds-button_neutral" onclick={handleDeedHistory}
+                                        data-id={property._id}>
+                                        View DeedHistory
+                                    </button>
+                                </td>
+                                <td data-label="Mortgage History">
+                                    <button class="slds-button slds-button_neutral" onclick={handleMortgageHistory}
+                                        data-id={property._id}>
+                                        View MortgageHistory
+                                    </button>
+                                </td>
+                                <td data-label="Property Info">
+                                    <button class="slds-button slds-button_neutral" onclick={openModal}
+                                        data-id={property._id}>
+                                        View Property
+                                    </button>
+                                </td>
+                                <td data-label="">
+                                    <lightning-button-menu data-id={property._id} icon-name="utility:down">
+                                        <lightning-menu-item label="Save Data to Salesforce"
+                                            onclick={handleSave}></lightning-menu-item>
+                                    </lightning-button-menu>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </lightning-tab>
+        </lightning-tabset>
+        <!-- Deed History-->
+        <template if:true={showAllDeedHistory}>
+            <section role="dialog" tabindex="-1" aria-modal="true"
+                class="slds-modal slds-fade-in-open slds-modal_large">
+                <div class="slds-modal__container">
+                    <!-- <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" -->
+                     <button class ="slds-button slds-button_icon slds-modal__close closeIcon slds-button_icon-bare slds-button_icon-inverse"
+                        onclick={closeModal}>
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Cancel and close</span>
+                    </button>
+                    <div class="slds-modal__header">
+                        <h1 class="slds-modal__title">Deed-History</h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <template if:true={propertyLookupDeedHistoryList}>
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Buyer Name">Buyer Name</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Seller Name">Seller Name</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Document Type">Document Type</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Recording Date">Recording Date</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Sale Date">Sale Date</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Sale Price">Sale Price</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={propertyLookupDeedHistoryList} for:item="deedItem">
+                                        <tr key={deedItem.id}>
+                                            <td data-label="Buyer Name">
+                                                <template for:each={deedItem.buyers} for:item="buyer">
+                                                    <div key={buyer} class="slds-truncate">{buyer}</div>
+                                                </template>
+                                            </td>
+                                            <td data-label="Seller Name">
+                                                <template for:each={deedItem.sellers} for:item="seller">
+                                                    <div key={seller} class="slds-truncate">{seller}</div>
+                                                </template>
+                                            </td>
+                                            <td data-label="Document Type">
+                                                <div class="slds-truncate">{deedItem.documentType}</div>
+                                            </td>
+                                            <td data-label="Recording Date">
+                                                <div class="slds-truncate">{deedItem.recordingDate}</div>
+                                            </td>
+                                            <td data-label="Sale Date">
+                                                <div class="slds-truncate">{deedItem.saleDate}</div>
+                                            </td>
+                                            <td data-label="Sale Price">
+                                                <div class="slds-truncate">{deedItem.salePrice}</div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral"
+                            onclick={cancelModalClick}></lightning-button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+
+        <!-- Morgtage History-->
+        <template if:true={showAllMortageHistory}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                class="slds-modal slds-fade-in-open slds-modal_large">
+                <div class="slds-modal__container">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close">
+                            </use>
+                        </svg>
+                        <span class="slds-assistive-text">Cancel and close</span>
+                    </button>
+                    <div class="slds-modal__header">
+                        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">
+                            Mortgage-History</h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <template if:true={propertyLookupMortgageList}>
+
+                            <div class="slds-box">
+                                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                    <thead>
+                                        <tr>
+                                            <th>Borrower's Name</th>
+                                            <th>Lender Name</th>
+                                            <th>Loan Amount</th>
+                                            <th>Loan Term Months</th>
+                                            <th>Interest Rate</th>
+                                            <th>Sale Date</th>
+                                            <th>Due Date</th>
+                                            <th>Recording Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={propertyLookupMortgageList} for:item="mortgageItem">
+                                            <tr key={mortgageItem.lenderName}>
+                                                <td>
+                                                    <template for:each={mortgageItem.borrowers} for:item="borrower">
+                                                        <div key={borrower}>
+                                                            <p>{borrower}</p>
+                                                        </div>
+                                                    </template>
+                                                </td>
+                                                <td>{mortgageItem.lenderName}</td>
+                                                <td>{mortgageItem.loanAmount}</td>
+                                                <td>{mortgageItem.loanTermMonths}</td>
+                                                <td>{mortgageItem.interestRate}</td>
+                                                <td>{mortgageItem.saleDate}</td>
+                                                <td>{mortgageItem.dueDate}</td>
+                                                <td>{mortgageItem.recordingDate}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral"
+                            onclick={cancelModalClick}></lightning-button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" aria-modal="true"
+                class="slds-modal slds-fade-in-open slds-modal_large">
+                <div class="slds-modal__container">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Cancel and close</span>
+                    </button>
+                    <div class="slds-modal__header">
+                        <h1 class="slds-modal__title slds-hyphenate" tabindex="-1">Property Information
+                        </h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-tabset class="slds-p-top_large">
+                            <lightning-tab label="Property Detail">
+                                <div class="slds-card slds-p-around_medium">
+                                    <template for:each={propertyLookupResponse.results.properties} for:item="property">
+                                        <section key={property._id}>
+                                            <div class="slds-grid slds-wrap slds-m-bottom_medium field">
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Property
+                                                            Owner</strong>
+                                                    </p>
+                                                    <template for:each={property.owner.names} for:item="ownerName">
+                                                        <div key={ownerName.full}>
+                                                            <p class="value">{ownerName.full}</p>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Address</strong></p>
+                                                    <p class="value">{property.address.street},{property.address.city}
+                                                    </p>
+                                                    <p>{property.address.state},{property.address.county},{property.address.zip}
+                                                    </p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Property Type
+                                                            Category</strong></p>
+                                                    <p class="value">{property.general.propertyTypeCategory}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Property Type
+                                                            Detail</strong></p>
+                                                    <p class="value">{property.general.propertyTypeDetail}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Land Market
+                                                            Value</strong></p>
+                                                    <p class="value">{property.assessment.landMarketValue}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Total Market
+                                                            Value</strong></p>
+                                                    <p class="value">{property.assessment.totalMarketValue}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Market Value
+                                                            Year</strong></p>
+                                                    <p class="value">{property.assessment.marketValueYear}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Total Estimated
+                                                            Value</strong></p>
+                                                    <p class="value">
+                                                        {property.propertyOwnerProfile.propertiesTotalEstimatedValue}
+                                                    </p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Tax Amount</strong>
+                                                    </p>
+                                                    <p class="value">{property.tax.taxAmount}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Tax Year</strong></p>
+                                                    <p class="value">{property.tax.taxYear}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Price Range
+                                                            Min</strong>
+                                                    </p>
+                                                    <p class="value">{property.valuation.priceRangeMin}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Price Range
+                                                            Max</strong>
+                                                    </p>
+                                                    <p class="value">{property.valuation.priceRangeMax}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                    <p class="slds-text-title_caps label"><strong>Property Confidence
+                                                            Score</strong></p>
+                                                    <p class="value">{property.valuation.confidenceScore}</p>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </template>
+                                </div>
+                            </lightning-tab>
+                            <lightning-tab label="Property Skip Trace">
+                                <template if:true={propertySkipTraceResponse.results}>
+                                    <template for:each={propertySkipTraceResponse.results.persons} for:item="skipTrace">
+                                        <div key={skipTrace._id}>
+                                            <div class="slds-theme_default slds-p-around_medium">
+                                                <div class="slds-grid slds-wrap field">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <p class="slds-text-title_caps label">
+                                                            <strong>Name</strong>
+                                                        </p>
+                                                        <p class="value">{skipTrace.name.first} {skipTrace.name.last}
+                                                        </p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <p class="slds-text-title_caps label">
+                                                            <strong>Email</strong>
+                                                        </p>
+                                                        <template for:each={skipTrace.emails} for:item="emails">
+                                                            <div key={emails}>
+                                                                <p class="value">{emails.email}</p>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <p class="slds-text-title_caps label">
+                                                            <strong>Mobile</strong>
+                                                        </p>
+                                                        <template if:true={propertySkipTraceMobile}>
+                                                            <template for:each={propertySkipTraceMobile}
+                                                                for:item="mobile">
+                                                                <div key={mobile}>
+                                                                    <p class="value">{mobile.number}</p>
+                                                                </div>
+                                                            </template>
+                                                        </template>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2 ">
+                                                        <p class="slds-text-title_caps label">
+                                                            <strong>Land Line</strong>
+                                                        </p>
+                                                        <template if:true={propertySkipTraceLandLine}>
+                                                            <template for:each={propertySkipTraceLandLine}
+                                                                for:item="landLine">
+                                                                <div key={landLine}>
+                                                                    <p class="value">{landLine.number}</p>
+                                                                </div>
+                                                            </template>
+                                                        </template>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <p class="slds-text-title_caps label">
+                                                            <strong>Address</strong>
+                                                        </p>
+                                                        <p class="value">{skipTrace.propertyAddress.street},
+                                                            {skipTrace.propertyAddress.city},</p>
+                                                        <p>{skipTrace.propertyAddress.state},
+                                                            {skipTrace.propertyAddress.county},{skipTrace.propertyAddress.zip}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+                            </lightning-tab>
+                            <lightning-tab label="Owner's Profile">
+                                <template if:true={propertyOwnerProfileResponse.results}>
+                                    <template for:each={propertyOwnerProfileResponse.results.persons}
+                                        for:item="ownerProfile">
+                                        <div key={ownerProfile._id}>
+                                            <div class="slds-grid slds-wrap field">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label ">
+                                                        <strong>Name</strong>
+                                                    </p>
+                                                    <p class="value">{ownerProfile.name.full}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label">
+                                                        <strong>Mailing Address</strong>
+                                                    </p>
+                                                    <p class="value">
+                                                        {ownerProfile.mailingAddress.street},{ownerProfile.mailingAddress.city}
+                                                    </p>
+                                                    <p>{ownerProfile.mailingAddress.state},{ownerProfile.mailingAddress.county},{ownerProfile.mailingAddress.zip}
+                                                    </p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label">
+                                                        <strong>Owned Properties</strong>
+                                                    </p>
+                                                    <template for:each={ownerProfile.ownedProperty.current.properties}
+                                                        for:item="OwnedProperty">
+                                                        <div key={OwnedProperty.address.houseNumber}>
+                                                            <p class="value">
+                                                                {OwnedProperty.address.street},{OwnedProperty.address.city}
+                                                                {OwnedProperty.address.state},{OwnedProperty.address.county},{OwnedProperty.address.zip}
+                                                                <br>
+                                                            </p>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label">
+                                                        <strong>Total Property Count</strong>
+                                                    </p>
+                                                    <p class="value">
+                                                        {ownerProfile.ownedProperty.current.meta.totalPropertyCount}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label">
+                                                        <strong>Total Assessed Value</strong>
+                                                    </p>
+                                                    <p class="value">
+                                                        {ownerProfile.ownedProperty.current.meta.totalAssessedValue}</p>
+                                                </div> <br>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label">
+                                                        <strong>Total Equity</strong>
+                                                    </p>
+                                                    <p class="value">
+                                                        {ownerProfile.ownedProperty.current.meta.totalEquity}
+                                                    </p>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <p class="slds-text-title_caps label">
+                                                        <strong>Total Estimated Value</strong>
+                                                    </p>
+                                                    <p class="value">
+                                                        {ownerProfile.ownedProperty.current.meta.totalEstimatedValue}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="slds-card slds-card_boundary slds-card_related-list-fix">
+                                                <div
+                                                    class="slds-page-header slds-page-header_joined slds-page-header_bleed slds-shrink-none test-headerRegion slds-is-relative">
+                                                    <div class="slds-card__header-title">
+                                                        Current Mortgage Details
+                                                    </div>
+                                                </div>
+                                                <div class="slds-card__body">
+                                                    <template for:each={ownerProfile.mortgage.open.mortgages}
+                                                        for:item="currentMortgage">
+                                                        <div key={currentMortgage.recordingDate}>
+                                                            <div class="slds-grid slds-wrap slds-m-around_xx-small">
+                                                                <div class="slds-col slds-box slds-size_2-of-2">
+                                                                    <div class="slds-grid slds-gutters">
+                                                                        <div class="slds-col">
+                                                                            <p class="slds-text-title_caps label">
+                                                                                <strong>Loan Amount</strong>
+                                                                            </p>
+                                                                            <p class="value">
+                                                                                {currentMortgage.loanAmount}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="slds-col">
+                                                                            <p class="slds-text-title_caps label">
+                                                                                <strong>Loan Type</strong>
+                                                                            </p>
+                                                                            <p class="value">{currentMortgage.loanType}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="slds-col">
+                                                                            <p class="slds-text-title_caps label">
+                                                                                <strong>Lender</strong>
+                                                                            </p>
+                                                                            <p class="value">
+                                                                                {currentMortgage.lenderName}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="slds-col">
+                                                                            <p class="slds-text-title_caps label">
+                                                                                <strong>Due Date</strong>
+                                                                            </p>
+                                                                            <p class="value">{currentMortgage.dueDate}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="slds-col">
+                                                                            <p class="slds-text-title_caps label">
+                                                                                <strong>Recording Date</strong>
+                                                                            </p>
+                                                                            <p class="value">
+                                                                                {currentMortgage.recordingDate}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+                            </lightning-tab>
+                            <lightning-tab label="Phone verification">
+                                <template if:true={phoneVerificationResponse.results}>
+                                    <template for:each={phoneVerificationResponse.results.phoneNumbers}
+                                        for:item="phoneVerification">
+                                        <div key={phoneVerification.carrier}>
+                                            <section>
+                                                <h1>Phone Verification Detail</h1><br>
+                                                <div class="slds-grid slds-wrap slds-m-bottom_medium field">
+                                                    <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                        <p class="slds-text-title_caps label"><strong>Carrier</strong>
+                                                        </p>
+                                                        <p class="value">{phoneVerification.carrier}</p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                        <p class="slds-text-title_caps label"><strong>Number</strong>
+                                                        </p>
+                                                        <p class="value">{phoneVerification.number}</p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                        <p class="slds-text-title_caps label"><strong>Reachable</strong>
+                                                        </p>
+                                                        <p class="value">{phoneVerification.reachable}</p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                        <p class="slds-text-title_caps label"><strong>State</strong></p>
+                                                        <p class="value">{phoneVerification.state}</p>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                        <p class="slds-text-title_caps label"><strong>Type</strong></p>
+                                                        <p class="value">{phoneVerification.type}</p>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <!-- DNC Status Section -->
+                                            <template if:true={nodncPhone}>
+                                                <section>
+                                                    <h1>DNC Status</h1><br>
+                                                    <div class="slds-grid slds-wrap slds-m-bottom_medium field">
+                                                        <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                            <p class="slds-text-title_caps label">
+                                                                <strong>Number</strong>
+                                                            </p>
+                                                            <p class="value">{nodncPhone.number}</p>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                            <p class="slds-text-title_caps label"><strong>DNC
+                                                                    Status</strong></p>
+                                                            <p class="value">{nodncPhone.dnc}</p>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </template>
+
+                                            <!-- TCPA Status Section -->
+                                            <template if:true={phoneTCPAstatus}>
+                                                <section>
+                                                    <h1>TCPA Status</h1><br>
+                                                    <div class="slds-grid slds-wrap slds-m-bottom_medium field">
+                                                        <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                            <p class="slds-text-title_caps label">
+                                                                <strong>Number</strong>
+                                                            </p>
+                                                            <p class="value">{phoneTCPAstatus.number}</p>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-3 slds-m-bottom_small">
+                                                            <p class="slds-text-title_caps label"><strong>TCPA
+                                                                    Status</strong></p>
+                                                            <p class="value">{phoneTCPAstatus.tcpa}</p>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </template>
+                            </lightning-tab>
+                        </lightning-tabset>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+    </template>
+</template>

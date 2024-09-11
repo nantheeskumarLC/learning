@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disposition_Reason__c</fullName>
+    <externalId>false</externalId>
+    <label>Disposition Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sold</fullName>
+                <default>false</default>
+                <label>Sold</label>
+            </value>
+            <value>
+                <fullName>Foreclosure</fullName>
+                <default>false</default>
+                <label>Foreclosure</label>
+            </value>
+            <value>
+                <fullName>Short Sale</fullName>
+                <default>false</default>
+                <label>Short Sale</label>
+            </value>
+            <value>
+                <fullName>Transfer to Family</fullName>
+                <default>false</default>
+                <label>Transfer to Family</label>
+            </value>
+            <value>
+                <fullName>Donation</fullName>
+                <default>false</default>
+                <label>Donation</label>
+            </value>
+            <value>
+                <fullName>Estate Settlement</fullName>
+                <default>false</default>
+                <label>Estate Settlement</label>
+            </value>
+            <value>
+                <fullName>Condemnation</fullName>
+                <default>false</default>
+                <label>Condemnation</label>
+            </value>
+            <value>
+                <fullName>Demolition</fullName>
+                <default>false</default>
+                <label>Demolition</label>
+            </value>
+            <value>
+                <fullName>Exchange (1031 Exchange)</fullName>
+                <default>false</default>
+                <label>Exchange (1031 Exchange)</label>
+            </value>
+            <value>
+                <fullName>Relocation</fullName>
+                <default>false</default>
+                <label>Relocation</label>
+            </value>
+            <value>
+                <fullName>Liquidation</fullName>
+                <default>false</default>
+                <label>Liquidation</label>
+            </value>
+            <value>
+                <fullName>End of Lease</fullName>
+                <default>false</default>
+                <label>End of Lease</label>
+            </value>
+            <value>
+                <fullName>Divorce Settlement</fullName>
+                <default>false</default>
+                <label>Divorce Settlement</label>
+            </value>
+            <value>
+                <fullName>Business Sale</fullName>
+                <default>false</default>
+                <label>Business Sale</label>
+            </value>
+            <value>
+                <fullName>Investment Exit</fullName>
+                <default>false</default>
+                <label>Investment Exit</label>
+            </value>
+            <value>
+                <fullName>Bankruptcy</fullName>
+                <default>false</default>
+                <label>Bankruptcy</label>
+            </value>
+            <value>
+                <fullName>Upgrade to Larger Property</fullName>
+                <default>false</default>
+                <label>Upgrade to Larger Property</label>
+            </value>
+            <value>
+                <fullName>Downsizing</fullName>
+                <default>false</default>
+                <label>Downsizing</label>
+            </value>
+            <value>
+                <fullName>Portfolio Restructuring</fullName>
+                <default>false</default>
+                <label>Portfolio Restructuring</label>
+            </value>
+            <value>
+                <fullName>Tax Sale</fullName>
+                <default>false</default>
+                <label>Tax Sale</label>
+            </value>
+            <value>
+                <fullName>End of Rental</fullName>
+                <default>false</default>
+                <label>End of Rental</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

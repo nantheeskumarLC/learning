@@ -1,0 +1,20 @@
+{
+  "packageDirectories": [
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "force-app",
+      "default": true,
+      "package": "TestRE04",
+      "versionDescription": ""
+    }
+  ],
+  "name": "Package",
+  "namespace": "lcmp",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "61.0",
+  "packageAliases": {
+    "TestRE04": "0HoF90000004CCgKAM",
+    "TestRE04@0.1.0-3": "04tF9000000CrbjIAC"
+  }
+}

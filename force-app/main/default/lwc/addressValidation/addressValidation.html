@@ -1,0 +1,102 @@
+<template>
+    <lightning-card class="slds-m-around_medium slds-size_12-of-12">
+        <div class="slds-box">
+            <div class="slds-grid slds-gutters">
+                <template if:true={isValidationBox}>
+                    <div class="slds-col slds-size_4-of-12 slds-border_right">
+                        <lightning-tabset>
+                            <lightning-tab label="Address Validation">
+                                <template for:each={addressValidationWrapper.requests} for:item="request"
+                                    for:index="index">
+                                    <div key={request.requestId}>
+                                        <lightning-input label="Street Line Address 1" placeholder="Street Address"
+                                            value={request.street} onchange={handleChangeAddress}
+                                            data-name="StreetLine1" type="search" data-index={index}
+                                            onkeyup={handleKeyUp} required>
+                                        </lightning-input>
+                                        <template if:true={isAutocompleteLoading}>
+                                            <div class="slds-col slds-size_5-of-12" style="margin-left: 13px;">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <template if:true={request.street}>
+                                                            <div if:true={autoCompleteAPIResponse.result}
+                                                                class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+                                                                role="listbox">
+                                                                <ul class="slds-listbox slds-listbox_vertical"
+                                                                    role="presentation">
+                                                                    <template
+                                                                        for:each={autoCompleteAPIResponse.result.suggestions}
+                                                                        for:item="suggestion">
+                                                                        <li key={suggestion._id}
+                                                                            data-value={suggestion.name}
+                                                                            role="presentation"
+                                                                            onclick={selectSearchResult}
+                                                                            data-index={index}
+                                                                            class="slds-listbox__item">
+                                                                            <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small "
+                                                                                role="option">
+                                                                                <span class="slds-media__body">
+                                                                                    <span class="slds-truncate"
+                                                                                        title={suggestion.name}>
+                                                                                        {suggestion.name}
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </li>
+                                                                    </template>
+                                                                </ul>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                        <lightning-input label="City" placeholder="City" value={request.city}
+                                            onchange={handleChangeAddress} data-name="city" data-index={index}>
+                                        </lightning-input>
+                                        <lightning-input label="State" placeholder="State" value={request.state}
+                                            onchange={handleChangeAddress} data-name="state" data-index={index}>
+                                        </lightning-input>
+                                        <lightning-input label="Postal/Zip Code" placeholder="Postal/Zip Code"
+                                            type="number" value={request.zip} onchange={handleChangeAddress}
+                                            data-name="postal" data-index={index} required>
+                                        </lightning-input><br><br>
+                                        <div class="slds-grid">
+                                            <div class="slds-col">
+                                                <lightning-button variant="brand" label="Validate Property"
+                                                    onclick={validateAddressOnClick}>
+                                                </lightning-button>
+                                            </div>
+                                            <template if:true={request.hideRemoveButton}>
+                                                <div class="slds-col">
+                                                    <lightning-button label="Remove" onclick={handleRemove}
+                                                        data-index={index}>
+                                                    </lightning-button>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template><br>
+                            </lightning-tab>
+                        </lightning-tabset>
+                        <lightning-button-icon icon-name="utility:add" onclick={handleAddNewAddress}
+                            class="slds-var-m-left_x-small"></lightning-button-icon>
+                    </div>
+                </template>
+                <template if:true={isChildComponent}>
+                <div class={dynamicClass}>
+                    <template if:true={isSpinnerResponse}>
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </template>
+                    <template if:true={propertyValidation}>
+                        <lightning-button-icon icon-name={iconDirection} onclick={handleValidateLayout}
+                        class="slds-var-m-left_x-small" ></lightning-button-icon>
+                        <c-property-validation address-validation-wrapper ={addressValidationWrapper} dynamic-class={dynamicClass}>
+                        </c-property-validation>
+                    </template>
+                </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

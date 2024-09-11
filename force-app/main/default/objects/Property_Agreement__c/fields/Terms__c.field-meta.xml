@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terms__c</fullName>
+    <externalId>false</externalId>
+    <label>Terms</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Property_Agreement_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>30-Day Escrow</fullName>
+                <default>false</default>
+                <label>30-Day Escrow</label>
+            </value>
+            <value>
+                <fullName>Cash Purchase</fullName>
+                <default>false</default>
+                <label>Cash Purchase</label>
+            </value>
+            <value>
+                <fullName>Inspection Contingency</fullName>
+                <default>false</default>
+                <label>Inspection Contingency</label>
+            </value>
+            <value>
+                <fullName>Financing Contingency</fullName>
+                <default>false</default>
+                <label>Financing Contingency</label>
+            </value>
+            <value>
+                <fullName>Seller to Pay Closing Costs</fullName>
+                <default>false</default>
+                <label>Seller to Pay Closing Costs</label>
+            </value>
+            <value>
+                <fullName>No Contingencies</fullName>
+                <default>false</default>
+                <label>No Contingencies</label>
+            </value>
+            <value>
+                <fullName>Subject to Appraisal</fullName>
+                <default>false</default>
+                <label>Subject to Appraisal</label>
+            </value>
+            <value>
+                <fullName>Lease Agreement</fullName>
+                <default>false</default>
+                <label>Lease Agreement</label>
+            </value>
+            <value>
+                <fullName>Rental Agreement</fullName>
+                <default>false</default>
+                <label>Rental Agreement</label>
+            </value>
+            <value>
+                <fullName>All Cash Purchase</fullName>
+                <default>false</default>
+                <label>All Cash Purchase</label>
+            </value>
+            <value>
+                <fullName>Leveraged Financing</fullName>
+                <default>false</default>
+                <label>Leveraged Financing</label>
+            </value>
+            <value>
+                <fullName>Due Diligence Period</fullName>
+                <default>false</default>
+                <label>Due Diligence Period</label>
+            </value>
+            <value>
+                <fullName>Renovation Contingency</fullName>
+                <default>false</default>
+                <label>Renovation Contingency</label>
+            </value>
+            <value>
+                <fullName>1031 Exchange</fullName>
+                <default>false</default>
+                <label>1031 Exchange</label>
+            </value>
+            <value>
+                <fullName>Seller Financing</fullName>
+                <default>false</default>
+                <label>Seller Financing</label>
+            </value>
+            <value>
+                <fullName>Assignment of Leases</fullName>
+                <default>false</default>
+                <label>Assignment of Leases</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Buyer Agreement Type</controllingFieldValue>
+            <valueName>Cash Purchase</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Buyer Agreement Type</controllingFieldValue>
+            <valueName>Inspection Contingency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Buyer Agreement Type</controllingFieldValue>
+            <valueName>Financing Contingency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Buyer Agreement Type</controllingFieldValue>
+            <valueName>Subject to Appraisal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tenant Agreement Type</controllingFieldValue>
+            <valueName>Lease Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tenant Agreement Type</controllingFieldValue>
+            <valueName>Rental Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>30-Day Escrow</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>Seller to Pay Closing Costs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>No Contingencies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>All Cash Purchase</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>Leveraged Financing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>Due Diligence Period</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>Renovation Contingency</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>1031 Exchange</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>Seller Financing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Investor Agreement Type</controllingFieldValue>
+            <valueName>Assignment of Leases</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

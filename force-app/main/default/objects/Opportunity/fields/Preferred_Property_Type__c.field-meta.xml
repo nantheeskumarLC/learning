@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Property_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Preferred Property Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single-family Home</fullName>
+                <default>false</default>
+                <label>Single-family Home</label>
+            </value>
+            <value>
+                <fullName>Multi-family Home</fullName>
+                <default>false</default>
+                <label>Multi-family Home</label>
+            </value>
+            <value>
+                <fullName>Condominium</fullName>
+                <default>false</default>
+                <label>Condominium</label>
+            </value>
+            <value>
+                <fullName>Townhouse</fullName>
+                <default>false</default>
+                <label>Townhouse</label>
+            </value>
+            <value>
+                <fullName>Apartment</fullName>
+                <default>false</default>
+                <label>Apartment</label>
+            </value>
+            <value>
+                <fullName>Duplex/Triplex/Fourplex</fullName>
+                <default>false</default>
+                <label>Duplex/Triplex/Fourplex</label>
+            </value>
+            <value>
+                <fullName>Commercial Office</fullName>
+                <default>false</default>
+                <label>Commercial Office</label>
+            </value>
+            <value>
+                <fullName>Retail Space</fullName>
+                <default>false</default>
+                <label>Retail Space</label>
+            </value>
+            <value>
+                <fullName>Industrial Warehouse</fullName>
+                <default>false</default>
+                <label>Industrial Warehouse</label>
+            </value>
+            <value>
+                <fullName>Mixed-Use Property</fullName>
+                <default>false</default>
+                <label>Mixed-Use Property</label>
+            </value>
+            <value>
+                <fullName>Vacant Land</fullName>
+                <default>false</default>
+                <label>Vacant Land</label>
+            </value>
+            <value>
+                <fullName>Luxury Property</fullName>
+                <default>false</default>
+                <label>Luxury Property</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

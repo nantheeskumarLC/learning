@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Method__c</fullName>
+    <externalId>false</externalId>
+    <label>Payment Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Wire Transfer</fullName>
+                <default>false</default>
+                <label>Wire Transfer</label>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Certified Check</fullName>
+                <default>false</default>
+                <label>Certified Check</label>
+            </value>
+            <value>
+                <fullName>Credit Card</fullName>
+                <default>false</default>
+                <label>Credit Card</label>
+            </value>
+            <value>
+                <fullName>Personal Check</fullName>
+                <default>false</default>
+                <label>Personal Check</label>
+            </value>
+            <value>
+                <fullName>Bank Transfer</fullName>
+                <default>false</default>
+                <label>Bank Transfer</label>
+            </value>
+            <value>
+                <fullName>Escrow Payment</fullName>
+                <default>false</default>
+                <label>Escrow Payment</label>
+            </value>
+            <value>
+                <fullName>Mortgage Financing</fullName>
+                <default>false</default>
+                <label>Mortgage Financing</label>
+            </value>
+            <value>
+                <fullName>Seller Financing</fullName>
+                <default>false</default>
+                <label>Seller Financing</label>
+            </value>
+            <value>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+                <label>PayPal</label>
+            </value>
+            <value>
+                <fullName>Cryptocurrency</fullName>
+                <default>false</default>
+                <label>Cryptocurrency</label>
+            </value>
+            <value>
+                <fullName>ACH Transfer</fullName>
+                <default>false</default>
+                <label>ACH Transfer</label>
+            </value>
+            <value>
+                <fullName>Money Order</fullName>
+                <default>false</default>
+                <label>Money Order</label>
+            </value>
+            <value>
+                <fullName>Lease Option</fullName>
+                <default>false</default>
+                <label>Lease Option</label>
+            </value>
+            <value>
+                <fullName>Installment Payment</fullName>
+                <default>false</default>
+                <label>Installment Payment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Buyer_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Buyer Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>First-time Homebuyer</fullName>
+                <default>false</default>
+                <label>First-time Homebuyer</label>
+            </value>
+            <value>
+                <fullName>Move-up Buyer</fullName>
+                <default>false</default>
+                <label>Move-up Buyer</label>
+            </value>
+            <value>
+                <fullName>Downsizing Buyer</fullName>
+                <default>false</default>
+                <label>Downsizing Buyer</label>
+            </value>
+            <value>
+                <fullName>Relocation Buyer</fullName>
+                <default>false</default>
+                <label>Relocation Buyer</label>
+            </value>
+            <value>
+                <fullName>Second Home Buyer</fullName>
+                <default>false</default>
+                <label>Second Home Buyer</label>
+            </value>
+            <value>
+                <fullName>Vacation Home Buyer</fullName>
+                <default>false</default>
+                <label>Vacation Home Buyer</label>
+            </value>
+            <value>
+                <fullName>Luxury Home Buyer</fullName>
+                <default>false</default>
+                <label>Luxury Home Buyer</label>
+            </value>
+            <value>
+                <fullName>Empty Nester</fullName>
+                <default>false</default>
+                <label>Empty Nester</label>
+            </value>
+            <value>
+                <fullName>Growing Family</fullName>
+                <default>false</default>
+                <label>Growing Family</label>
+            </value>
+            <value>
+                <fullName>Retiree</fullName>
+                <default>false</default>
+                <label>Retiree</label>
+            </value>
+            <value>
+                <fullName>Single Professional</fullName>
+                <default>false</default>
+                <label>Single Professional</label>
+            </value>
+            <value>
+                <fullName>Couple</fullName>
+                <default>false</default>
+                <label>Couple</label>
+            </value>
+            <value>
+                <fullName>Multigenerational Family</fullName>
+                <default>false</default>
+                <label>Multigenerational Family</label>
+            </value>
+            <value>
+                <fullName>Cash Buyer</fullName>
+                <default>false</default>
+                <label>Cash Buyer</label>
+            </value>
+            <value>
+                <fullName>VA Loan Buyer</fullName>
+                <default>false</default>
+                <label>VA Loan Buyer</label>
+            </value>
+            <value>
+                <fullName>FHA Loan Buyer</fullName>
+                <default>false</default>
+                <label>FHA Loan Buyer</label>
+            </value>
+            <value>
+                <fullName>Conventional Loan Buyer</fullName>
+                <default>false</default>
+                <label>Conventional Loan Buyer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
